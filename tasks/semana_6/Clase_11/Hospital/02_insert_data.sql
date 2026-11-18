@@ -1,70 +1,69 @@
--- Inserción de datos
+-- INSERTS: CONSULTORIOS
 
--- INSERTS AUTORES
 
-INSERT INTO autores
-(nombre, apellido, nacionalidad, especialidad)
+INSERT INTO consultorios
+(numero, piso, ala, servicio)
 VALUES
-('John R.', 'Taylor', 'Estadounidense', 'Mecánica clásica'),
-('David J.', 'Griffiths', 'Estadounidense', 'Electromagnetismo'),
-('Stephen', 'Hawking', 'Británica', 'Cosmología'),
-('Carl', 'Sagan', 'Estadounidense', 'Astronomía y divulgación');
+('N-101', 3, 'Norte', 'Neurocirugía'),
+('E-202', 4, 'Este', 'Electrofisiología cardíaca'),
+('H-303', 5, 'Oeste', 'Hematología y trasplante');
 
 
--- INSERTS LIBROS: ISBN y datos editoriales ilustrativos.
+-- INSERTS: MEDICOS
 
-
-INSERT INTO libros
-(autor_id, titulo, isbn, area, anio_publicacion, ejemplares_disponibles)
+INSERT INTO medicos
+(nombre, apellido, matricula, especialidad, consultorio_id)
 VALUES
-(1, 'Classical Mechanics', '9781891389221', 'Mecanica', 2005, 3),
-(2, 'Introduction to Electrodynamics', '9781108420419', 'Electromagnetismo', 2017, 2),
-(3, 'A Brief History of Time', '9780553380163', 'Cosmologia', 1988, 4),
-(4, 'Cosmos', '9780345539434', 'Astrofisica', 1980, 2);
+('Valentina', 'Méndez', 'MP-45821', 'Neurocirugía', 1),
+('Santiago', 'Ferraro', 'MP-37642', 'Electrofisiología cardíaca', 2),
+('Lucía', 'Herrera', 'MP-51289', 'Hematología y trasplante de médula ósea', 3);
 
 
+-- INSERTS: PACIENTES
 
--- INSERTS: SOCIOS
-
-INSERT INTO socios
-(nombre, apellido, documento, categoria, carrera)
+INSERT INTO pacientes
+(nombre, apellido, dni, fecha_nacimiento, grupo_sanguineo, factor_rh, telefono)
 VALUES
-('Luciana', 'Pereyra', '40111222', 'Estudiante', 'Licenciatura en Física'),
-('Tomás', 'Gutiérrez', '38555666', 'Estudiante', 'Licenciatura en Astronomía'),
-('Gabriela', 'Fernández', '25111999', 'Docente', 'Departamento de Física');
+('Martín', 'Quiroga', '30111222', '1975-04-12', 'A', '+', '3492001101'),
+('Camila', 'Benítez', '32555666', '1988-08-20', 'O', '-', '3492001102'),
+('Federico', 'Suárez', '28999888', '1969-11-05', 'B', '+', '3492001103');
 
 
+-- INSERTS: CITAS
 
--- INSERTS: CARNETS
-
-INSERT INTO carnets
-(socio_id, numero_carnet, fecha_emision, fecha_vencimiento)
+INSERT INTO citas
+(paciente_id, medico_id, fecha_hora, motivo, duracion_minutos, estado)
 VALUES
-(1, 'BIB-2026-001', '2026-03-01', '2027-03-01'),
-(2, 'BIB-2026-002', '2026-03-01', '2027-03-01'),
-(3, 'BIB-2026-003', '2026-03-01', '2027-03-01');
+(1, 1, '2026-11-18 09:00:00', 'Evaluación prequirúrgica de tumor cerebral', 60, 'Programada'),
+(1, 2, '2026-11-19 10:30:00', 'Evaluación electrofisiológica por arritmia', 45, 'Programada'),
+(2, 1, '2026-11-20 11:00:00', 'Seguimiento de lesión intracraneal', 45, 'Programada'),
+(3, 3, '2026-11-21 08:30:00', 'Evaluación hematológica por alteración medular', 60, 'Programada');
 
 
+-- INSERTS: ENFERMEDADES
 
--- INSERTS: PRESTAMOS
-
-INSERT INTO prestamos
-(socio_id, fecha_prestamo, fecha_devolucion_prevista, fecha_devolucion_real, estado)
+INSERT INTO enfermedades
+(nombre, categoria, descripcion)
 VALUES
-(1, '2026-11-10', '2026-11-24', NULL, 'Activo'),
-(2, '2026-11-11', '2026-11-25', NULL, 'Activo'),
-(1, '2026-10-01', '2026-10-15', '2026-10-14', 'Devuelto'),
-(3, '2026-11-12', '2026-11-26', NULL, 'Activo');
+('Hipertensión arterial', 'Cardiovascular', 'Elevación persistente de la presión arterial.'),
+('Fibrilación auricular', 'Cardiovascular', 'Arritmia cardíaca caracterizada por una actividad auricular desorganizada.'),
+('Glioblastoma', 'Oncológica', 'Tumor cerebral maligno de alto grado.'),
+('Leucemia mieloide aguda', 'Hematológica', 'Neoplasia hematológica caracterizada por proliferación de células mieloides inmaduras.');
 
 
+-- INSERTS: PACIENTE_ENFERMEDAD
 
--- INSERTS: PRESTAMO_LIBROS
-
-INSERT INTO prestamo_libros
-(prestamo_id, libro_id, estado_ejemplar)
+INSERT INTO paciente_enfermedad
+(paciente_id, enfermedad_id, fecha_diagnostico, gravedad, observaciones)
 VALUES
-(1, 1, 'En prestamo'),
-(1, 2, 'En prestamo'),
-(2, 3, 'En prestamo'),
-(3, 4, 'Devuelto'),
-(4, 1, 'En prestamo');
+-- Martín: hipertensión y fibrilación auricular.
+(1, 1, '2024-03-10', 'Moderada', 'Diagnóstico en seguimiento.'),
+(1, 2, '2025-06-15', 'Grave', 'Requiere evaluación electrofisiológica.'),
+
+-- Camila: hipertensión y glioblastoma.
+(2, 1, '2023-09-12', 'Leve', 'Control periódico de presión arterial.'),
+(2, 3, '2026-02-20', 'Grave', 'En seguimiento por neurocirugía.'),
+
+-- Federico: enfermedad hematológica.
+(3, 4, '2026-01-15', 'Grave', 'En evaluación para tratamiento especializado.');
+

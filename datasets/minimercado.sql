@@ -1,8 +1,8 @@
--- =====================================================================
+
 -- Dataset: Minimercado
 -- Uso: crear la base `minimercado`, abrir el Query Tool y ejecutar todo.
 -- Borra las tablas si ya existen (por ejemplo, las creadas en la Clase 11).
---
+-- =============================================================================
 -- Casos "sin coincidencia" incluidos a propósito (para practicar JOINs):
 --   * Clientes que nunca compraron: ids 7, 9, 15, 16, 22, 27, 29, 30
 --   * Proveedores sin productos: ids 10 y 11

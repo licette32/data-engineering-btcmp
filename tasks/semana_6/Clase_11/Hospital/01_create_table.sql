@@ -1,3 +1,7 @@
+-- Semana 6 · Clase 11 — Tarea: Diseñar una base de datos transaccional
+-- Base de datos: hospital_db
+
+
 -- 1. TABLA: CONSULTORIOS
 
 CREATE TABLE consultorios (
@@ -27,7 +31,6 @@ CREATE TABLE medicos (
 
     -- Relación 1:1: Cada médico tiene un solo consultorio.
     -- UNIQUE impide que dos médicos compartan consultorio.
-
     CONSTRAINT fk_medico_consultorio
         FOREIGN KEY (consultorio_id)
         REFERENCES consultorios(consultorio_id)
@@ -83,11 +86,7 @@ CREATE TABLE citas (
         CHECK (duracion_minutos BETWEEN 10 AND 240),
 
     CONSTRAINT chk_estado_cita
-        CHECK (estado IN (
-            'Programada',
-            'Atendida',
-            'Cancelada'
-        )),
+        CHECK (estado IN ('Programada', 'Atendida', 'Cancelada')),
 
     -- Un médico no puede tener dos citascon el mismo horario de inicio.
     CONSTRAINT uq_medico_horario
@@ -115,9 +114,6 @@ CREATE TABLE paciente_enfermedad (
     observaciones       TEXT,
 
     -- Clave primaria compuesta.
-    -- Evita duplicar la misma asociación
-    -- entre paciente y enfermedad.
-
     CONSTRAINT pk_paciente_enfermedad
         PRIMARY KEY (paciente_id, enfermedad_id),
 
