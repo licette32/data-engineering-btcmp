@@ -34,5 +34,6 @@ docker compose down
 | --- | --- |
 | `tasks/semana_4/` | Modelado de datos, relaciones (1:1, 1:N, N:N) y DDL en PostgreSQL. |
 | `tasks/semana_5/` | Consultas SQL básicas, filtros, funciones agregadas y `GROUP BY`. |
-
+| `tasks/semana_6/` | Base de datos transaccional y `JOINs`. |
+| `tasks/semana_7/` | SQL avanzado y OLTP vs OLAP. |
 ---
